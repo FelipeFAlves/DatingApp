@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div style="text-align: center;">
+        @if(!registerMode){
+            <h1>Ache seu match</h1>
+            <p class="lead">Entre para ver seus matches...tudo o que você precisa fazer é logan!</p>
+            <div class="text-center">
+                <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Cadastro</button>
+                <button class="btn btn-info btn-lg me-2">Saiba mais</button>
+            </div>
+        } @else {
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <app-register [usersFromHomeComponent]="users"
+                            (cancelRegister)="cancelRegisterMode($event)"
+                        ></app-register>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

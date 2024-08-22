@@ -2,6 +2,7 @@ using System.Text;
 using API;
 using API.Data;
 using API.Interfaces;
+using API.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -39,6 +40,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionMIddleware>();
 app.UseCors(x => {
     x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200");
 });

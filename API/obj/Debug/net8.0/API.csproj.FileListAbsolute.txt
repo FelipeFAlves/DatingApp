@@ -134,3 +134,5 @@
 /home/felipe/Documents/GitHub/DatingApp/API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /home/felipe/Documents/GitHub/DatingApp/API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
 /home/felipe/Documents/GitHub/DatingApp/API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/felipe/Documents/GitHub/DatingApp/API/bin/Debug/net8.0/Data/UserSeedData.json
+/home/felipe/Documents/GitHub/DatingApp/API/bin/Debug/net8.0/AutoMapper.dll

@@ -2,7 +2,7 @@
     <div style="text-align: center;">
         @if(!registerMode){
             <h1>Ache seu match</h1>
-            <p class="lead">Entre para ver seus matches...tudo o que você precisa fazer é logan!</p>
+            <p class="lead">Entre para ver seus matches...tudo o que você precisa fazer é logar!</p>
             <div class="text-center">
                 <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2">Cadastro</button>
                 <button class="btn btn-info btn-lg me-2">Saiba mais</button>
@@ -11,9 +11,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-4">
-                        <!-- <app-register [usersFromHomeComponent]="users"
+                        <app-register 
                             (cancelRegister)="cancelRegisterMode($event)"
-                        ></app-register> -->
+                        ></app-register>
                     </div>
                 </div>
             </div>

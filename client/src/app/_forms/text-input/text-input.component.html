@@ -1,0 +1,18 @@
+<div class="mb-3 form-floating">
+    <input [type]="type()"
+        [class.is-invalid]="control.touched && control.invalid"
+        class="form-control"
+        [formControl]="control"
+        placeholder={{label()}}
+    >
+    <label>{{label()}}</label>
+    <div *ngIf="control.hasError('required')" 
+    class="invalid-feedback text-start">{{label()}}</div>
+    <div *ngIf="control.hasError('minlength')" 
+    class="invalid-feedback text-start">
+    Necesssário ter ao menos {{control.errors?.['minlength'].requiredLength}} caracteres</div>
+    <div *ngIf="control.hasError('maxlength')"
+     class="invalid-feedback text-start">Necessário ter no maximo {{control.errors?.['maxlength'].requiredLength}} caracteres</div>
+     <div *ngIf="control.hasError('isMatching')"
+     class="invalid-feedback text-start">Senhas não são iguais</div>
+</div>

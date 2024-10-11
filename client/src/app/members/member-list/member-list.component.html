@@ -11,7 +11,7 @@
                     type="number" class="form-control ms-1" 
                     style="width: 70px;"
                     name="minAge"
-                    [(ngModel)] = "userParams.minAge"
+                    [(ngModel)] = "memberService.userParams().minAge"
                 >
             </div>
 
@@ -21,7 +21,7 @@
                     type="number" class="form-control ms-1" 
                     style="width: 70px;"
                     name="maxAge"
-                    [(ngModel)] = "userParams.maxAge"
+                    [(ngModel)] = "memberService.userParams().maxAge"
                 >
             </div>
 
@@ -30,7 +30,7 @@
                 <select 
                     name="gender" style="width: 130px;"
                     class="form-select ms-1"
-                    [(ngModel)] = "userParams.gender"
+                    [(ngModel)] = "memberService.userParams().gender"
                 >
                 @for(gender of genderList; track gender.value){
                     <option [value]="gender.value">
@@ -50,7 +50,7 @@
                         name="orderBy"
                         (click) = "loadMembers()"
                         btnRadio = "lastActive"
-                        [(ngModel)]="userParams.orderBy"
+                        [(ngModel)]="memberService.userParams().orderBy"
                     >Ativo por ultimo</button>
 
                     <button
@@ -59,7 +59,7 @@
                         name="orderBy"
                         (click) = "loadMembers()"
                         btnRadio = "created"
-                        [(ngModel)]="userParams.orderBy"
+                        [(ngModel)]="memberService.userParams().orderBy"
                     >Novos membros</button>
                 </div>
             </div>

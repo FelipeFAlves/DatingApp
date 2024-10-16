@@ -2,6 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Member } from '../_models/member';
+import { PaginatedResult } from '../_models/pagination';
+import { setPaginatedResponse, setPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,7 @@ import { Member } from '../_models/member';
 export class LikesService {
   baseUrl = environment.apiUrl;
   private http = inject(HttpClient);
+  paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
 
   likeIds = signal<number[]>([]);
 
@@ -16,8 +19,15 @@ export class LikesService {
     return this.http.post(`${this.baseUrl}likes/${targetId}`,{})
   }
 
-  getLikes(predicate: string){
-    return this.http.get<Member[]>(`${this.baseUrl}likes?predicate=${predicate}`);
+  getLikes(predicate: string,pageNumber:number, pageSize:number){
+    let params = setPaginationHeaders(pageNumber,pageSize);
+    params = params.append('predicate',predicate);
+
+    return this.http.get<Member[]>(`${this.baseUrl}likes`,
+      {observe:'response',params}).subscribe({
+        next: response => setPaginatedResponse(response,this.paginatedResult)
+      });;
+      
   }
 
   getLikeIds(){

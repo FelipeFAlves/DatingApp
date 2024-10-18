@@ -17,8 +17,8 @@
     </div>
 </div>
 
-@if(!messageService.paginatedResult()?.items){
-    <h3>Sem mensagens</h3>
+@if(!messageService.paginatedResult()?.items || messageService.paginatedResult()?.items?.length === 0){
+    <h3 class="mt-3">Sem mensagens</h3>
 } @else {
     <table class="table table-hover mt-3" style="cursor: pointer;">
         <thead>
@@ -31,11 +31,11 @@
         </thead>
         <tbody class="align-middle">
             @for(message of messageService.paginatedResult()?.items;track message.id){
-                <tr routerLink="{{getRoute(message)}}">
+                <tr routerLink="{{getRoute(message)}}" [queryParams]="{tab: 'Messages'}">
                     <td>{{message.content}}<td>
                     <td>
                         <div>
-                            <img [src]="container === 'Outbox'
+                            <img [src]="isOutbox
                             ? (message.recipientPhotoUrl || './assets/user.png') 
                             : (message.senderPhotoUrl || './assets/user.png')"  
                             alt="image of user"
@@ -45,7 +45,7 @@
                         </div>
                     </td>
                     <td>{{message.messageSent | timeago}}</td>
-                    <td> <button class="btn btn-dander">Excluir</button></td>
+                    <td (click)="$event.stopPropagation()"> <button (click)="deleteMessage(message.id)" class="btn btn-danger">Excluir</button></td>
                 </tr>
                 
             }
@@ -54,8 +54,9 @@
 }
 
 
-@if(messageService.paginatedResult()?.pagination){
-    <div class="d-flex justifu-content-center">
+@if(messageService.paginatedResult()?.pagination && 
+    messageService.paginatedResult()?.pagination?.totalItems! > 0){
+    <div class="d-flex justify-content-center">
         <pagination 
             [boundaryLinks]="true"
             [totalItems]="messageService.paginatedResult()?.pagination!.totalItems"
